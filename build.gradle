@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.rv_abstractions_version = 'd7159519bb'
+    ext.rv_abstractions_version = '-SNAPSHOT'
     ext.virtual_bank_version = 'master-SNAPSHOT'
     ext.shimmer_version = '0.2.0'
     ext.kotlin_version = '1.2.51'
