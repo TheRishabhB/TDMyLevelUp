@@ -1,6 +1,7 @@
 package com.td.mylevelup.dashboard.accountsCard
 
 import android.content.Context
+import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.util.AttributeSet
@@ -9,6 +10,7 @@ import com.ngam.rvabstractions.properties.CardDataSource
 import com.td.mylevelup.Constants
 import com.td.mylevelup.R
 import com.td.mylevelup.VirtualBankInformationHolder
+import com.td.mylevelup.accounts.AccountsActivity
 import com.td.virtualbank.VirtualBank
 import com.td.virtualbank.VirtualBankBankAccount
 import java.util.ArrayList
@@ -37,7 +39,7 @@ class AccountsCard(context: Context, attrSet: AttributeSet?, defStyleAttr: Int):
     }
 
     override fun storeResponse(accounts: ArrayList<VirtualBankBankAccount>?) {
-        VirtualBankInformationHolder
+        VirtualBankInformationHolder.bankAccounts = accounts
     }
 
     override fun makeBankAccountsCall(vb: VirtualBank) {
@@ -49,6 +51,7 @@ class AccountsCard(context: Context, attrSet: AttributeSet?, defStyleAttr: Int):
     }
 
     override fun launchAccountsDetailsPage() {
-        // TODO
+        val intent = Intent(context, AccountsActivity::class.java)
+        context.startActivity(intent)
     }
 }

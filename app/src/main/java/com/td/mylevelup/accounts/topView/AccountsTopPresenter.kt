@@ -1,6 +1,5 @@
-package com.td.mylevelup.dashboard.accountsCard
+package com.td.mylevelup.accounts.topView
 
-import android.view.View
 import com.android.volley.VolleyError
 import com.ngam.rvabstractions.contracts.OnInputReceived
 import com.ngam.rvabstractions.presenter.AbstractPresenter
@@ -9,9 +8,9 @@ import com.td.virtualbank.VirtualBankBankAccount
 import com.td.virtualbank.VirtualBankGetCustomerBankAccountsRequest
 import java.util.ArrayList
 
-class AccountsCardPresenter(private val view: AccountsCardView,
-                            private val vb: VirtualBank): AbstractPresenter() {
-
+class AccountsTopPresenter(private val view: AccountsTopView,
+                           private val vb: VirtualBank,
+                           private val delegate: AccountsTopViewDelegate): AbstractPresenter() {
     private var accounts: ArrayList<VirtualBankBankAccount> = ArrayList()
 
     override fun onViewReady() {
@@ -21,20 +20,6 @@ class AccountsCardPresenter(private val view: AccountsCardView,
             return
         }
         handleBankAccountsResponse(view.getBankAccounts())
-    }
-
-    fun createBannerClickListener(): View.OnClickListener {
-        return View.OnClickListener {
-            view.launchAccountsDetailsPage()
-        }
-    }
-
-    fun createAccountInputListener(): OnInputReceived<VirtualBankBankAccount> {
-        return object: OnInputReceived<VirtualBankBankAccount> {
-            override fun onInputReceived(input: VirtualBankBankAccount) {
-                view.launchAccountsDetailsPage()
-            }
-        }
     }
 
     fun createBankAccountsClosure(): VirtualBankGetCustomerBankAccountsRequest {
@@ -51,11 +36,20 @@ class AccountsCardPresenter(private val view: AccountsCardView,
 
     private fun handleBankAccountsResponse(accounts: ArrayList<VirtualBankBankAccount>?) {
         this.accounts = accounts ?: return
-        view.storeResponse(accounts)
-        view.reloadCard()
+        view.storeBankAccountsResponse(accounts)
+        view.reloadTop()
+        view.notifyTopLoaded(accounts)
     }
 
     fun getAccounts(): ArrayList<VirtualBankBankAccount> {
         return accounts
+    }
+
+    fun createAccountInputListener(): OnInputReceived<VirtualBankBankAccount> {
+        return object: OnInputReceived<VirtualBankBankAccount> {
+            override fun onInputReceived(input: VirtualBankBankAccount) {
+                delegate.onAccountSelected(input)
+            }
+        }
     }
 }

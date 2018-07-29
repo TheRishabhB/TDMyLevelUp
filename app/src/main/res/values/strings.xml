@@ -5,4 +5,8 @@
 
     <!-- Dashboard Strings -->
     <string name="loading_profile">Loading Profile\u2026</string>
+
+    <!-- Accounts Page Strings -->
+    <string name="balances_title">Banking Accounts</string>
+    <string name="recommendations_button">Learn More!</string>
 </resources>

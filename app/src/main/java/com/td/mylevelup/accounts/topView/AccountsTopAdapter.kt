@@ -1,11 +1,10 @@
-package com.td.mylevelup.dashboard.accountsCard
+package com.td.mylevelup.accounts.topView
 
 import com.ngam.rvabstractions.adapter.AbstractDataBindAdapter
 import com.ngam.rvabstractions.components.smallShimmer.SmallShimmerBinder
 import com.td.mylevelup.components.accountsCardCell.AccountsCellBinder
 
-
-class AccountsCardAdapter(private val presenter: AccountsCardPresenter): AbstractDataBindAdapter() {
+class AccountsTopAdapter(private val presenter: AccountsTopPresenter): AbstractDataBindAdapter() {
     override fun buildRows() {
         listItems.clear()
         // Add shimmer if no accounts to show
