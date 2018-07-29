@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TD MyLevelUp</string>
+    <string name="name_format" formatted="false">Welcome %1s %2s!</string>
+    <string name="welcome">Welcome!</string>
+
+    <!-- Dashboard Strings -->
+    <string name="loading_profile">Loading Profile\u2026</string>
+</resources>
