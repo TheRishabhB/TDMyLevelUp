@@ -15,11 +15,13 @@ object VirtualBankInformationHolder {
     var bankAccounts: ArrayList<VirtualBankBankAccount>? = null
     var creditCardAccounts: ArrayList<VirtualBankCreditCardAccount>? = null
     var bankAccountTransactions: HashMap<VirtualBankBankAccount, ArrayList<VirtualBankTransaction>?> = HashMap()
+    var creditCardTransactions: HashMap<VirtualBankCreditCardAccount, ArrayList<VirtualBankTransaction>?> = HashMap()
 
     fun clearAllValues() {
         customer = null
         bankAccounts = null
         creditCardAccounts = null
         bankAccountTransactions.clear()
+        creditCardTransactions.clear()
     }
 }

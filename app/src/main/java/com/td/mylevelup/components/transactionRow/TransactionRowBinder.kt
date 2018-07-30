@@ -16,10 +16,21 @@ class TransactionRowBinder(private val transaction: VirtualBankTransaction):
 
     override fun bindViewHolder(viewHolder: TransactionRowViewHolder) {
         val context: Context = viewHolder.transactionAmount.context
-        viewHolder.transactionMerchantName.text = if (transaction.merchantName.isNullOrEmpty()) "Transaction" else transaction.merchantName
+
+        viewHolder.transactionMerchantName.text = getTransactionName()
         viewHolder.transactionTime.text = transaction.originationDate
         val color: Int = if (transaction.currencyAmount >= 0) context.getColor(R.color.colorPrimaryDark) else Color.RED
         viewHolder.transactionAmount.setTextColor(color)
         viewHolder.transactionAmount.text = String.format("$%.2f", transaction.currencyAmount)
+    }
+
+    private fun getTransactionName(): String {
+        if (!transaction.merchantName.isNullOrEmpty()) {
+            return transaction.merchantName
+        } else if (!transaction.description.isNullOrEmpty()) {
+            return transaction.description
+        } else {
+            return "Transaction"
+        }
     }
 }

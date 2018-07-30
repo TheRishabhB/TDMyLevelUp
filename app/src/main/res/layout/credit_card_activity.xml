@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include layout="@layout/centered_title_banner"
+        android:id="@+id/creditCardBalancesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+    </include>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/creditCardPageCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/creditCardBalancesText"
+        android:layout_marginTop="@dimen/top_margin"
+        android:importantForAccessibility="auto">
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/creditCardBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/creditCardPageCard"
+        android:layout_marginTop="@dimen/card_spacing"
+        android:importantForAccessibility="auto">
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

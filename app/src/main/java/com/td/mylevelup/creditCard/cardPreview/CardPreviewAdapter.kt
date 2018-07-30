@@ -1,10 +1,10 @@
-package com.td.mylevelup.dashboard.creditCardCard
+package com.td.mylevelup.creditCard.cardPreview
 
 import com.ngam.rvabstractions.adapter.AbstractDataBindAdapter
 import com.ngam.rvabstractions.components.shimmer.centerShimmer.CenterShimmerBinder
 import com.td.mylevelup.components.creditCardRow.CreditCardRowBinder
 
-class CreditCardCardAdapter(private val presenter: CreditCardCardPresenter): AbstractDataBindAdapter() {
+class CardPreviewAdapter(private val presenter: CardPreviewPresenter): AbstractDataBindAdapter() {
     override fun buildRows() {
         listItems.clear()
 
@@ -15,7 +15,7 @@ class CreditCardCardAdapter(private val presenter: CreditCardCardPresenter): Abs
         }
 
         for (account in presenter.getAccounts()) {
-            add(CreditCardRowBinder(account, inputListener = presenter.createCardInputListener()))
+            add(CreditCardRowBinder(account, inputListener = presenter.getCreditCardChangedClosure()))
         }
     }
 }

@@ -1,6 +1,5 @@
-package com.td.mylevelup.dashboard.creditCardCard
+package com.td.mylevelup.creditCard.cardPreview
 
-import android.view.View
 import com.android.volley.VolleyError
 import com.ngam.rvabstractions.contracts.OnInputReceived
 import com.ngam.rvabstractions.presenter.AbstractPresenter
@@ -9,14 +8,12 @@ import com.td.virtualbank.VirtualBankCreditCardAccount
 import com.td.virtualbank.VirtualBankGetCustomerCreditCardAccountsRequest
 import java.util.ArrayList
 
-class CreditCardCardPresenter(
-        private val view: CreditCardCardView,
-        private val vb: VirtualBank): AbstractPresenter() {
-
+class CardPreviewPresenter(private val view: CreditCardPreviewView,
+                           private val vb: VirtualBank): AbstractPresenter() {
     private var accounts: ArrayList<VirtualBankCreditCardAccount> = ArrayList()
 
     override fun onViewReady() {
-        super.onViewReady()
+        // If no cached value of CC accounts, make call.
         if (view.getCreditCardAccounts() == null) {
             view.makeCreditCardAccountsCall(vb)
             return
@@ -24,16 +21,10 @@ class CreditCardCardPresenter(
         handleCreditCardAccountsResponse(view.getCreditCardAccounts())
     }
 
-    fun createCardBannerClickListener(): View.OnClickListener {
-        return View.OnClickListener {
-            view.launchCreditCardDetailsPage()
-        }
-    }
-
-    fun createCardInputListener(): OnInputReceived<VirtualBankCreditCardAccount> {
+    fun getCreditCardChangedClosure(): OnInputReceived<VirtualBankCreditCardAccount> {
         return object: OnInputReceived<VirtualBankCreditCardAccount> {
             override fun onInputReceived(input: VirtualBankCreditCardAccount) {
-                view.launchCreditCardDetailsPage()
+                view.cardChanged(input)
             }
         }
     }
@@ -42,6 +33,7 @@ class CreditCardCardPresenter(
         return object: VirtualBankGetCustomerCreditCardAccountsRequest() {
             override fun onSuccess(p0: ArrayList<VirtualBankCreditCardAccount>?) {
                 handleCreditCardAccountsResponse(p0)
+                view.storeResponse(p0 ?: return)
             }
 
             override fun onError(p0: VolleyError?) {
@@ -52,11 +44,11 @@ class CreditCardCardPresenter(
 
     private fun handleCreditCardAccountsResponse(accounts: ArrayList<VirtualBankCreditCardAccount>?) {
         this.accounts = accounts ?: return
-        view.storeResponse(accounts)
-        view.reloadCard()
+        view.reloadDetailsCard()
+        view.previewCardLoaded(accounts)
     }
 
-    fun getAccounts(): java.util.ArrayList<VirtualBankCreditCardAccount> {
+    fun getAccounts(): ArrayList<VirtualBankCreditCardAccount> {
         return accounts
     }
 }

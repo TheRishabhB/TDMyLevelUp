@@ -9,4 +9,7 @@
     <!-- Accounts Page Strings -->
     <string name="balances_title">Banking Accounts</string>
     <string name="recommendations_button">Learn More!</string>
+
+    <!-- Credit Card Strings -->
+    <string name="credit_card_title">Credit Cards</string>
 </resources>

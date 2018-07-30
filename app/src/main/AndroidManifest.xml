@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".accounts.AccountsActivity">
         </activity>
+        <activity android:name=".creditCard.CreditCardActivity">
+        </activity>
     </application>
 
 </manifest>
