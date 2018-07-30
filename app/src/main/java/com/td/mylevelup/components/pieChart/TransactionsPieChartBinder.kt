@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.ViewGroup
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -45,10 +46,6 @@ class TransactionsPieChartBinder(private val transactions: ArrayList<VirtualBank
 
         val amountSpent: ArrayList<PieEntry> = ArrayList()
         for (mappedValue in vendorToCostMap) {
-            // Max of 6 labels.
-            if (amountSpent.size >= 6) {
-                break
-            }
             amountSpent.add(PieEntry(mappedValue.value.toFloat(), mappedValue.key))
         }
         val pieDataSet = PieDataSet(amountSpent, "Amount Spent at Each Vendor")
