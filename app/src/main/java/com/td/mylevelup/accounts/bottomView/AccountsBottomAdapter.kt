@@ -11,9 +11,6 @@ class AccountsBottomAdapter(private val presenter: AccountsBottomPresenter): Abs
     override fun buildRows() {
         listItems.clear()
 
-        add(SideTitleBinder("Summary: ", 30f))
-        add(TransactionsPieChartBinder(if (presenter.shouldShowShimmer) ArrayList() else presenter.transactions))
-
         // Recommendations
         add(SideTitleBinder("Recommendations: ", 30f))
         if (presenter.accounts.isEmpty()) {
@@ -21,6 +18,9 @@ class AccountsBottomAdapter(private val presenter: AccountsBottomPresenter): Abs
         } else {
             add(AccountsRecommendationRowBinder(presenter.getAccountRecommendations()))
         }
+
+        add(SideTitleBinder("Summary: ", 30f))
+        add(TransactionsPieChartBinder(if (presenter.shouldShowShimmer) ArrayList() else presenter.transactions))
 
         // Transactions
         add(SideTitleBinder("Transactions: ", 30f))

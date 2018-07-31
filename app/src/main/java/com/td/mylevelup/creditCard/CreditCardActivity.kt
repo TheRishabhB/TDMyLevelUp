@@ -1,9 +1,7 @@
 package com.td.mylevelup.creditCard
 
 import android.os.Bundle
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.*
 import android.util.TypedValue
 import android.widget.TextView
 import com.ngam.rvabstractions.activity.AbstractActivity
@@ -55,7 +53,7 @@ class CreditCardActivity: AbstractActivity<CreditCardTransactionDetailsPresenter
 
         cardPreviewListView = findViewById(R.id.creditCardPageCard)
         cardPreviewListView.apply {
-            layoutManager = LinearLayoutManager(this@CreditCardActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(this@CreditCardActivity)
             itemAnimator = DefaultItemAnimator()
             adapter = previewAdapter
         }
@@ -64,6 +62,9 @@ class CreditCardActivity: AbstractActivity<CreditCardTransactionDetailsPresenter
         cardPreviewListView.setPadding(0, getPixelsGivenDP(15f), 0, 0)
         cardPreviewListView.addOnScrollListener(getRVScrollListener())
         cardPreviewListView.layoutParams.height = getPixelsGivenDP(200f)
+
+        val snapHelper: SnapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(cardPreviewListView)
     }
 
     private fun getRVScrollListener(): RecyclerView.OnScrollListener {
@@ -122,7 +123,7 @@ class CreditCardActivity: AbstractActivity<CreditCardTransactionDetailsPresenter
     }
 
     override fun cardChanged(account: VirtualBankCreditCardAccount) {
-        presenter.onCardChanged(account)
+        if (presenter.selectedCard == account) return else presenter.onCardChanged(account)
     }
 
     // CreditCardTransactionDetailsView

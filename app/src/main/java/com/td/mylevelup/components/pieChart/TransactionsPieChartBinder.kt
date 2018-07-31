@@ -30,7 +30,7 @@ class TransactionsPieChartBinder(private val transactions: ArrayList<VirtualBank
         }
         customizePieChartLook(viewHolder.chart)
         viewHolder.chart.data = parseTransactionDataToPieData()
-        viewHolder.chart.animateY(1000, Easing.EasingOption.Linear);
+        viewHolder.chart.animateY(1000, Easing.EasingOption.Linear)
     }
 
     private fun parseTransactionDataToPieData(): PieData {
@@ -46,6 +46,9 @@ class TransactionsPieChartBinder(private val transactions: ArrayList<VirtualBank
 
         val amountSpent: ArrayList<PieEntry> = ArrayList()
         for (mappedValue in vendorToCostMap) {
+            if (amountSpent.size >= 4) {
+                break
+            }
             amountSpent.add(PieEntry(mappedValue.value.toFloat(), mappedValue.key))
         }
         val pieDataSet = PieDataSet(amountSpent, "Amount Spent at Each Vendor")
@@ -56,6 +59,7 @@ class TransactionsPieChartBinder(private val transactions: ArrayList<VirtualBank
 
     private fun setPieDataSetCustomizations(dataSet: PieDataSet) {
         dataSet.xValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
+        dataSet.yValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
         dataSet.valueFormatter = customValueFormatter()
         dataSet.valueTextSize = 15f
 
