@@ -8,6 +8,7 @@ import com.td.mylevelup.R
 
 class CreditCardShimmerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val longCardShimmer: ShimmerFrameLayout = itemView.findViewById(R.id.longCardShimmer)
+    val creditCardShimmerView: View = itemView.findViewById(R.id.creditCardShimmerView)
     companion object {
         @LayoutRes
         fun getLayoutId(): Int {

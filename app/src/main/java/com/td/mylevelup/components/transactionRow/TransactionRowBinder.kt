@@ -3,7 +3,7 @@ package com.td.mylevelup.components.transactionRow
 import android.content.Context
 import android.graphics.Color
 import android.view.ViewGroup
-import com.ngam.rvabstractions.binder.AbstractDataBinder
+import com.ngam.rvabstractions.general.AbstractDataBinder
 import com.td.mylevelup.R
 import com.td.virtualbank.VirtualBankTransaction
 

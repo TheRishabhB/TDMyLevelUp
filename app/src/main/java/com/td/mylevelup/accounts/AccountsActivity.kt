@@ -5,15 +5,14 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.TextView
-import com.ngam.rvabstractions.activity.AbstractActivity
-import com.ngam.rvabstractions.properties.AbstractClassProperties
+import com.ngam.rvabstractions.screens.AbstractActivity
+import com.ngam.rvabstractions.screens.AbstractClassProperties
 import com.td.mylevelup.Constants
 import com.td.mylevelup.R
 import com.td.mylevelup.VirtualBankInformationHolder
 import com.td.mylevelup.accounts.bottomView.AccountsBottomAdapter
 import com.td.mylevelup.accounts.bottomView.AccountsBottomPresenter
 import com.td.mylevelup.accounts.bottomView.AccountsBottomView
-import com.td.mylevelup.accounts.bottomView.AccountsBottomViewDelegate
 import com.td.mylevelup.accounts.topView.AccountsTopAdapter
 import com.td.mylevelup.accounts.topView.AccountsTopPresenter
 import com.td.mylevelup.accounts.topView.AccountsTopView
@@ -24,7 +23,7 @@ import com.td.virtualbank.VirtualBankTransaction
 import java.util.ArrayList
 
 class AccountsActivity: AbstractActivity<AccountsBottomPresenter, AccountsBottomAdapter>(),
-        AccountsTopView, AccountsBottomView, AccountsTopViewDelegate, AccountsBottomViewDelegate {
+        AccountsTopView, AccountsBottomView, AccountsTopViewDelegate {
     private lateinit var titleText: TextView
     private lateinit var vb: VirtualBank
     private lateinit var topListView: RecyclerView
@@ -89,7 +88,7 @@ class AccountsActivity: AbstractActivity<AccountsBottomPresenter, AccountsBottom
     }
 
     override fun makeBankAccountsCall(vb: VirtualBank) {
-        vb.getCustomerBankAccounts(this, Constants.IVANA_EASTOM_STUDENT_ID,
+        vb.getCustomerBankAccounts(this, Constants.SELECTED_PROFILE.profile.id,
                 topPresenter.createBankAccountsClosure())
     }
 

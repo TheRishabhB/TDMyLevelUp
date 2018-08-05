@@ -3,43 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".dashboard.DashboardActivity"
+    android:background="@color/background">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
-        tools:context=".dashboard.DashboardActivity">
+        android:layout_height="wrap_content">
 
-
-        <RelativeLayout
-            android:id="@+id/userNameParentLayout"
+        <com.td.mylevelup.dashboard.profileSwitcher.ProfileSwitcherView
+            android:id="@+id/profileSwitcherView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/userNameText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/text_color"
-                android:textSize="@dimen/dashboard_text_size"
-                tools:text="Welcome Alex!"
-                android:visibility="gone"/>
-
-            <include layout="@layout/shimmer_text"
-                android:id="@+id/loadingShimmerFrameLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true">
-            </include>
-        </RelativeLayout>
+        </com.td.mylevelup.dashboard.profileSwitcher.ProfileSwitcherView>
 
         <com.td.mylevelup.dashboard.accountsCard.AccountsCard
             android:id="@+id/accountsCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/card_spacing"
-            android:layout_below="@id/userNameParentLayout">
+            android:layout_below="@id/profileSwitcherView">
         </com.td.mylevelup.dashboard.accountsCard.AccountsCard>
 
         <com.td.mylevelup.dashboard.creditCardCard.CreditCardCard

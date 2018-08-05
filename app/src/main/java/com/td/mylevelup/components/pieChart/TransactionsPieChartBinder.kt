@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.view.ViewGroup
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -12,7 +11,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.IValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.ViewPortHandler
-import com.ngam.rvabstractions.binder.AbstractDataBinder
+import com.ngam.rvabstractions.general.AbstractDataBinder
 import com.td.virtualbank.VirtualBankTransaction
 import java.util.ArrayList
 import kotlin.math.absoluteValue

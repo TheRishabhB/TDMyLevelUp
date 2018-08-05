@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.support.v7.widget.*
 import android.util.TypedValue
 import android.widget.TextView
-import com.ngam.rvabstractions.activity.AbstractActivity
-import com.ngam.rvabstractions.properties.AbstractClassProperties
+import com.ngam.rvabstractions.screens.AbstractActivity
+import com.ngam.rvabstractions.screens.AbstractClassProperties
 import com.td.mylevelup.Constants
 import com.td.mylevelup.R
 import com.td.mylevelup.VirtualBankInformationHolder
@@ -113,7 +113,7 @@ class CreditCardActivity: AbstractActivity<CreditCardTransactionDetailsPresenter
     }
 
     override fun makeCreditCardAccountsCall(vb: VirtualBank) {
-        vb.getCustomerCreditCardAccounts(this, Constants.IVANA_EASTOM_STUDENT_ID,
+        vb.getCustomerCreditCardAccounts(this, Constants.SELECTED_PROFILE.profile.id,
                 previewPresenter.getCreditAccountsClosure())
     }
 

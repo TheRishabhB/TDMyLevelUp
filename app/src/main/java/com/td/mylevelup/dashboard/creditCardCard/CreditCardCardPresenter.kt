@@ -2,8 +2,8 @@ package com.td.mylevelup.dashboard.creditCardCard
 
 import android.view.View
 import com.android.volley.VolleyError
-import com.ngam.rvabstractions.contracts.OnInputReceived
-import com.ngam.rvabstractions.presenter.AbstractPresenter
+import com.ngam.rvabstractions.general.AbstractPresenter
+import com.ngam.rvabstractions.general.OnInputReceived
 import com.td.virtualbank.VirtualBank
 import com.td.virtualbank.VirtualBankCreditCardAccount
 import com.td.virtualbank.VirtualBankGetCustomerCreditCardAccountsRequest
@@ -17,6 +17,7 @@ class CreditCardCardPresenter(
 
     override fun onViewReady() {
         super.onViewReady()
+        accounts.clear()
         if (view.getCreditCardAccounts() == null) {
             view.makeCreditCardAccountsCall(vb)
             return

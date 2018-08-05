@@ -1,8 +1,8 @@
 package com.td.mylevelup.accounts.topView
 
 import com.android.volley.VolleyError
-import com.ngam.rvabstractions.contracts.OnInputReceived
-import com.ngam.rvabstractions.presenter.AbstractPresenter
+import com.ngam.rvabstractions.general.AbstractPresenter
+import com.ngam.rvabstractions.general.OnInputReceived
 import com.td.virtualbank.VirtualBank
 import com.td.virtualbank.VirtualBankBankAccount
 import com.td.virtualbank.VirtualBankGetCustomerBankAccountsRequest

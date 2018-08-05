@@ -2,9 +2,9 @@ package com.td.mylevelup.components.creditCardRow
 
 import android.support.annotation.DrawableRes
 import android.view.ViewGroup
-import com.ngam.rvabstractions.binder.AbstractDataBinder
-import com.ngam.rvabstractions.contracts.OnInputReceived
-import com.ngam.rvabstractions.contracts.SimpleOnInputListener
+import com.ngam.rvabstractions.general.AbstractDataBinder
+import com.ngam.rvabstractions.general.OnInputReceived
+import com.ngam.rvabstractions.general.SimpleOnInputListener
 import com.td.virtualbank.VirtualBankCreditCardAccount
 import com.td.mylevelup.R
 

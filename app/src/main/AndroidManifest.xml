@@ -10,16 +10,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".dashboard.DashboardActivity">
+        <activity android:name=".dashboard.DashboardActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".accounts.AccountsActivity">
+        <activity android:name=".accounts.AccountsActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".creditCard.CreditCardActivity">
+        <activity android:name=".creditCard.CreditCardActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

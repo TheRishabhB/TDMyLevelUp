@@ -5,8 +5,8 @@ import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.util.AttributeSet
-import com.ngam.rvabstractions.card.GenericCardView
-import com.ngam.rvabstractions.properties.CardDataSource
+import com.ngam.rvabstractions.singleCard.CardDataSource
+import com.ngam.rvabstractions.singleCard.GenericCardView
 import com.td.mylevelup.Constants
 import com.td.mylevelup.R
 import com.td.mylevelup.VirtualBankInformationHolder
@@ -34,6 +34,11 @@ class AccountsCard(context: Context, attrSet: AttributeSet?, defStyleAttr: Int):
         cardListView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
     }
 
+    fun dataChanged() {
+        presenter.onViewReady()
+        reloadCard()
+    }
+
     override fun reloadCard() {
         adapter.reload()
     }
@@ -43,7 +48,7 @@ class AccountsCard(context: Context, attrSet: AttributeSet?, defStyleAttr: Int):
     }
 
     override fun makeBankAccountsCall(vb: VirtualBank) {
-        vb.getCustomerBankAccounts(context, Constants.IVANA_EASTOM_STUDENT_ID, presenter.createBankAccountsClosure())
+        vb.getCustomerBankAccounts(context, Constants.SELECTED_PROFILE.profile.id, presenter.createBankAccountsClosure())
     }
 
     override fun getBankAccounts(): ArrayList<VirtualBankBankAccount>? {

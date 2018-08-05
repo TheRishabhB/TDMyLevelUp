@@ -1,7 +1,7 @@
 package com.td.mylevelup.accounts.bottomView
 
 import com.android.volley.VolleyError
-import com.ngam.rvabstractions.presenter.AbstractPresenter
+import com.ngam.rvabstractions.general.AbstractPresenter
 import com.td.mylevelup.models.PersonalAccountsEnum
 import com.td.virtualbank.VirtualBankBankAccount
 import com.td.virtualbank.VirtualBankGetTransactionsRequest
@@ -15,15 +15,14 @@ class AccountsBottomPresenter(private val view: AccountsBottomView): AbstractPre
     var shouldShowShimmer: Boolean = true
 
     fun getAccountRecommendations(): PersonalAccountsEnum {
-        val accountBalances: Double = accounts.sumByDouble { it.balance }
-        when (accountBalances) {
-            in 2000..3000 -> return PersonalAccountsEnum.MINIMUM_CHEQUING
-            in 3000..4000 -> return PersonalAccountsEnum.EVERYDAY_CHEQUING
-            in 4000..5000 -> return PersonalAccountsEnum.UNLIMITED_CHEQUING
+        val accountBalance: Double = selectedAccount.balance
+        return when (accountBalance) {
+            in 2000..3000 -> PersonalAccountsEnum.MINIMUM_CHEQUING
+            in 3000..4000 -> PersonalAccountsEnum.EVERYDAY_CHEQUING
+            in 4000..5000 -> PersonalAccountsEnum.UNLIMITED_CHEQUING
             in 5000..Int.MAX_VALUE -> PersonalAccountsEnum.ALL_INCLUSIVE_BANKING
-            else -> return PersonalAccountsEnum.MINIMUM_CHEQUING
+            else -> PersonalAccountsEnum.MINIMUM_CHEQUING
         }
-        return PersonalAccountsEnum.MINIMUM_CHEQUING
     }
 
     fun getTransactionsClosure(): VirtualBankGetTransactionsRequest {

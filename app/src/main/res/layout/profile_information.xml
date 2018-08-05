@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ivana"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/profileUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/profileImage"
+            android:textColor="@color/text_color"
+            android:layout_marginTop="5dp"
+            android:textSize="20sp"
+            tools:text="Ivana Easom"/>
+
+        <TextView
+            android:id="@+id/profileInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/profileUserName"
+            android:textColor="@color/text_color"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:textSize="15sp"
+            tools:text="38 - In School - Renting"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

@@ -8,7 +8,7 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.ViewGroup
 import android.widget.TextView
-import com.ngam.rvabstractions.binder.AbstractDataBinder
+import com.ngam.rvabstractions.general.AbstractDataBinder
 import com.td.mylevelup.R
 import com.td.mylevelup.models.PersonalAccountsEnum
 

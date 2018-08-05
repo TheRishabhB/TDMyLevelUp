@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recommendationsCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/creditCardInfoParent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/cardImage"
+                android:layout_width="110dp"
+                android:layout_height="70dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"
+                android:importantForAccessibility="no"
+                android:src="@drawable/td_us_dollar_visa_card"/>
+
+            <TextView
+                android:id="@+id/cardRecommendationDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/cardImage"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/text_color"
+                android:layout_margin="10dp"
+                android:textSize="12sp"
+                tools:text="After analyzing your transactions, income, and credit, we recommend the TD Cash Back Visa Infinite Card"/>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/learnMoreButton"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="12sp"
+            android:background="@color/colorPrimary"
+            tools:text="Learn More!"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

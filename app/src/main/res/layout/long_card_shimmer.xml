@@ -2,23 +2,16 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="#FFFFFF">
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/longCardShimmer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <View
-                android:id="@+id/shimmerCellImage"
-                android:layout_width="300dp"
-                android:layout_height="150dp"
-                android:layout_margin="10dp"
-                android:background="#dddddd"/>
-        </com.facebook.shimmer.ShimmerFrameLayout>
-    </LinearLayout>
+    android:layout_height="match_parent">
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/longCardShimmer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <View
+            android:id="@+id/creditCardShimmerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#dddddd">
+        </View>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 </RelativeLayout>

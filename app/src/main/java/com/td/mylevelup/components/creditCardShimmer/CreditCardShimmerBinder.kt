@@ -3,7 +3,7 @@ package com.td.mylevelup.components.creditCardShimmer
 import android.animation.ValueAnimator
 import android.view.ViewGroup
 import com.facebook.shimmer.Shimmer
-import com.ngam.rvabstractions.binder.AbstractDataBinder
+import com.ngam.rvabstractions.general.AbstractDataBinder
 
 class CreditCardShimmerBinder(
         private val shouldAutoStart: Boolean = false,
@@ -23,5 +23,7 @@ class CreditCardShimmerBinder(
                 .build()
         viewHolder.longCardShimmer.setShimmer(shimmer)
         viewHolder.longCardShimmer.startShimmer()
+
+        viewHolder.creditCardShimmerView.alpha = 0.85f
     }
 }

@@ -5,8 +5,8 @@ import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.util.TypedValue
-import com.ngam.rvabstractions.card.GenericCardView
-import com.ngam.rvabstractions.properties.CardDataSource
+import com.ngam.rvabstractions.singleCard.CardDataSource
+import com.ngam.rvabstractions.singleCard.GenericCardView
 import com.td.mylevelup.Constants
 import com.td.mylevelup.R
 import com.td.mylevelup.VirtualBankInformationHolder
@@ -32,26 +32,16 @@ class CreditCardCard(context: Context, attrSet: AttributeSet?, defStyleAttr: Int
 
     init {
         cardListView.setBackgroundResource(R.drawable.td_couch)
-        cardListView.setPadding(0, getPixelsGivenDP(15f), 0, 0)
-        cardListView.addOnScrollListener(getRVScrollListener())
         cardListView.layoutParams.height = getPixelsGivenDP(200f)
-    }
-
-    private fun getRVScrollListener(): RecyclerView.OnScrollListener {
-        return object: RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (dy > 0) {
-                    cardListView.setPadding(0, 0, 0, 0)
-                    return
-                }
-                cardListView.setPadding(0, getPixelsGivenDP(15f), 0, 0)
-            }
-        }
     }
 
     private fun getPixelsGivenDP(dp: Float): Int {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics).toInt()
+    }
+
+    fun dataChanged() {
+        presenter.onViewReady()
+        adapter.reload()
     }
 
     override fun launchCreditCardDetailsPage() {
@@ -64,7 +54,7 @@ class CreditCardCard(context: Context, attrSet: AttributeSet?, defStyleAttr: Int
     }
 
     override fun makeCreditCardAccountsCall(vb: VirtualBank) {
-        vb.getCustomerCreditCardAccounts(context, Constants.IVANA_EASTOM_STUDENT_ID, presenter.getCreditAccountsClosure())
+        vb.getCustomerCreditCardAccounts(context, Constants.SELECTED_PROFILE.profile.id, presenter.getCreditAccountsClosure())
     }
 
     override fun reloadCard() {
