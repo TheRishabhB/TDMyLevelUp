@@ -24,6 +24,9 @@
         <activity android:name=".creditCard.CreditCardActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".investing.InvestingActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

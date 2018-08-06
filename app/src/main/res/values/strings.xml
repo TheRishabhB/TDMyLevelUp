@@ -12,4 +12,8 @@
 
     <!-- Credit Card Strings -->
     <string name="credit_card_title">Credit Cards</string>
+
+    <!-- Investing Strings -->
+    <string name="investing_card_string">We noticed you are spending quite heavily this month.
+        Click here to see how investing could make you money.</string>
 </resources>

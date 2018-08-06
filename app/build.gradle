@@ -25,6 +25,7 @@ dependencies {
 
     implementation "com.github.TheRishabhB:RecyclerViewAbstractions:$rv_abstractions_version"
     implementation "com.github.itsAlexNguyen:VirtualBank:$virtual_bank_version"
+    implementation "com.squareup.okhttp3:okhttp:$ok_http_3_version"
     implementation "com.facebook.shimmer:shimmer:$shimmer_version"
     implementation "com.github.PhilJay:MPAndroidChart:$mp_android_chart_version"
     implementation "de.hdodenhof:circleimageview:$circle_imageview_version"

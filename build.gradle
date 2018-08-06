@@ -3,6 +3,7 @@
 buildscript {
     ext.rv_abstractions_version = '-SNAPSHOT'
     ext.virtual_bank_version = 'master-SNAPSHOT'
+    ext.ok_http_3_version = '3.11.0'
     ext.mp_android_chart_version = 'v3.0.3'
     ext.circle_imageview_version = '2.2.0'
     ext.shimmer_version = '0.2.0'

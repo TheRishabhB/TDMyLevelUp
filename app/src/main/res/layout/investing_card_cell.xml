@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/investingRecommendationsParentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+    <ImageView
+        android:id="@+id/investingBackground"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:importantForAccessibility="no"
+        android:src="@drawable/investing_banner_1"
+        android:tint="#9F000000"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"/>
+
+    <TextView
+        android:id="@+id/investingRecommendationsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/investingBackground"
+        android:layout_alignBottom="@id/investingBackground"
+        android:layout_alignStart="@id/investingBackground"
+        android:layout_alignEnd="@id/investingBackground"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
+        android:layout_margin="1dp"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textColor="@android:color/white"
+        android:text="@string/investing_card_string"/>
+
+</RelativeLayout>
