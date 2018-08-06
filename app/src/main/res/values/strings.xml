@@ -4,7 +4,7 @@
     <string name="welcome">Welcome!</string>
 
     <!-- Dashboard Strings -->
-    <string name="loading_profile">Loading Profile\u2026</string>
+    <string name="loading">Loading\u2026</string>
 
     <!-- Accounts Page Strings -->
     <string name="balances_title">Banking Accounts</string>

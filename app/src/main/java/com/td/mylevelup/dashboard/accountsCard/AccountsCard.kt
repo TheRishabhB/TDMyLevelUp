@@ -39,6 +39,11 @@ class AccountsCard(context: Context, attrSet: AttributeSet?, defStyleAttr: Int):
         reloadCard()
     }
 
+    fun dataRefreshed() {
+        presenter.updateCardData()
+        reloadCard()
+    }
+
     override fun reloadCard() {
         adapter.reload()
     }

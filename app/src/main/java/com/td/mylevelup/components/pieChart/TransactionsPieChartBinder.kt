@@ -82,6 +82,7 @@ class TransactionsPieChartBinder(private val transactions: ArrayList<VirtualBank
         chart.description.isEnabled = false
         chart.setEntryLabelColor(Color.BLACK)
         chart.setEntryLabelTextSize(10f)
+        chart.isDrawHoleEnabled = true
         chart.holeRadius = 40f
     }
 

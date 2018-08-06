@@ -26,6 +26,15 @@ class AccountsCardPresenter(private val view: AccountsCardView,
         handleBankAccountsResponse(view.getBankAccounts())
     }
 
+    fun updateCardData() {
+        isError = false
+        if (view.getBankAccounts() == null) {
+            view.makeBankAccountsCall(vb)
+            return
+        }
+        handleBankAccountsResponse(view.getBankAccounts())
+    }
+
     fun createBannerClickListener(): View.OnClickListener {
         return View.OnClickListener {
             view.launchAccountsDetailsPage()

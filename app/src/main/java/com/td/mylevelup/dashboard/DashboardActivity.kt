@@ -24,9 +24,15 @@ class DashboardActivity : AppCompatActivity() {
 
         val switcher: ProfileSwitcherView = findViewById(R.id.profileSwitcherView)
         switcher.attachScrollListener(createScrollListener())
-
         accountsCardView = findViewById(R.id.accountsCard)
         creditCardCard = findViewById(R.id.creditCardCard)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Update card to ensure that if data came while not on screen, cards are updated.
+        accountsCardView.dataRefreshed()
+        creditCardCard.dataRefreshed()
     }
 
     private fun createScrollListener(): OnInputReceived<CustomerProfiles> {

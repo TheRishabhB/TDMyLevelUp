@@ -27,6 +27,15 @@ class CreditCardCardPresenter(
         handleCreditCardAccountsResponse(view.getCreditCardAccounts())
     }
 
+    fun updateCardData() {
+        isError = false
+        if (view.getCreditCardAccounts() == null) {
+            view.makeCreditCardAccountsCall(vb)
+            return
+        }
+        handleCreditCardAccountsResponse(view.getCreditCardAccounts())
+    }
+
     fun createCardBannerClickListener(): View.OnClickListener {
         return View.OnClickListener {
             view.launchCreditCardDetailsPage()

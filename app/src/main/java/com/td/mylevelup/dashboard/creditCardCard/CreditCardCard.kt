@@ -44,6 +44,11 @@ class CreditCardCard(context: Context, attrSet: AttributeSet?, defStyleAttr: Int
         adapter.reload()
     }
 
+    fun dataRefreshed() {
+        presenter.updateCardData()
+        reloadCard()
+    }
+
     override fun launchCreditCardDetailsPage() {
         val intent = Intent(context, CreditCardActivity::class.java)
         context.startActivity(intent)
