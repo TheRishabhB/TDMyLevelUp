@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.rv_abstractions_version = '-SNAPSHOT'
+    ext.rv_abstractions_version = 'fd498822b3'
     ext.virtual_bank_version = 'master-SNAPSHOT'
     ext.ok_http_3_version = '3.11.0'
     ext.mp_android_chart_version = 'v3.0.3'
