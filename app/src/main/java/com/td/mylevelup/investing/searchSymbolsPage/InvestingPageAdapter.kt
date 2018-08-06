@@ -1,4 +1,4 @@
-package com.td.mylevelup.investing
+package com.td.mylevelup.investing.searchSymbolsPage
 
 import com.ngam.rvabstractions.components.title.centerTitle.CenterTitleBinder
 import com.ngam.rvabstractions.components.title.sideTitle.SideTitleBinder
@@ -11,11 +11,12 @@ class InvestingPageAdapter(private val presenter: InvestingPagePresenter): Abstr
 
         // Nothing in search bar
         if (presenter.getUpdatedSearchQuery().isNullOrEmpty()) {
+            add(SideTitleBinder("", 15f))
             add(SideTitleBinder("Suggestions: ", 30f))
             add(SideTitleBinder("", 15f))
-            add((SymbolSearchInfoBinder("MSFT", "Microsoft Corporation")))
-            add((SymbolSearchInfoBinder("NFLX", "Netflix")))
-            add((SymbolSearchInfoBinder("FB", "Facebook")))
+            add((SymbolSearchInfoBinder("MSFT", "Microsoft Corporation", presenter.createSearchInputListener())))
+            add((SymbolSearchInfoBinder("NFLX", "Netflix", presenter.createSearchInputListener())))
+            add((SymbolSearchInfoBinder("FB", "Facebook", presenter.createSearchInputListener())))
             return
         }
 
@@ -25,10 +26,11 @@ class InvestingPageAdapter(private val presenter: InvestingPagePresenter): Abstr
             return
         }
 
+        add(SideTitleBinder("", 15f))
         add(SideTitleBinder(String.format("Symbols (%d): ", presenter.getUpdatedSymbolsList().size), 30f))
         add(SideTitleBinder("", 15f))
         for (symbol in presenter.getUpdatedSymbolsList()) {
-            add(SymbolSearchInfoBinder(symbol.symbol, symbol.name))
+            add(SymbolSearchInfoBinder(symbol.symbol, symbol.name, presenter.createSearchInputListener()))
         }
     }
 }

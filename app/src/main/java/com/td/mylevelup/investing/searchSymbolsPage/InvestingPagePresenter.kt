@@ -1,9 +1,10 @@
-package com.td.mylevelup.investing
+package com.td.mylevelup.investing.searchSymbolsPage
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ngam.rvabstractions.general.AbstractPresenter
-import com.td.mylevelup.models.SearchSymbolModel
+import com.ngam.rvabstractions.general.OnInputReceived
+import com.td.mylevelup.models.yahooAPI.SearchSymbolModel
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -34,11 +35,6 @@ class InvestingPagePresenter(private val view: InvestingPageView,
             override fun onResponse(call: Call?, response: Response?) {
                 val responseBody: String = response?.body()?.string() ?: return
 
-                val responseString: String = JSONObject(responseBody)
-                        .getJSONObject("ResultSet")
-                        .getJSONArray("Result")
-                        .toString()
-
                 val queryString: String = JSONObject(responseBody)
                         .getJSONObject("ResultSet")
                         .getString("Query")
@@ -47,6 +43,11 @@ class InvestingPagePresenter(private val view: InvestingPageView,
                     // Only update if is most up-to-date string
                     return
                 }
+
+                val responseString: String = JSONObject(responseBody)
+                        .getJSONObject("ResultSet")
+                        .getJSONArray("Result")
+                        .toString()
 
                 val listResponseTypeToken =  object: TypeToken<List<SearchSymbolModel>>(){}.type
 
@@ -58,5 +59,13 @@ class InvestingPagePresenter(private val view: InvestingPageView,
                 // TODO: Handle Fail
             }
         })
+    }
+
+    fun createSearchInputListener(): OnInputReceived<String> {
+        return object: OnInputReceived<String> {
+            override fun onInputReceived(input: String) {
+                view.launchSimulationScreenWithSymbol(input)
+            }
+        }
     }
 }

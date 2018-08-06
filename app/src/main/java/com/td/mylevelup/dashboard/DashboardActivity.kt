@@ -2,8 +2,6 @@ package com.td.mylevelup.dashboard
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.ngam.rvabstractions.general.OnInputReceived
 import com.td.mylevelup.Constants
 import com.td.mylevelup.R
@@ -12,10 +10,6 @@ import com.td.mylevelup.dashboard.accountsCard.AccountsCard
 import com.td.mylevelup.dashboard.creditCardCard.CreditCardCard
 import com.td.mylevelup.dashboard.profileSwitcher.ProfileSwitcherView
 import com.td.mylevelup.models.CustomerProfiles
-import com.td.mylevelup.models.SearchSymbolModel
-import okhttp3.*
-import org.json.JSONObject
-import java.io.IOException
 
 class DashboardActivity : AppCompatActivity() {
 

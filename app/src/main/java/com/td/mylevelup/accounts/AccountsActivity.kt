@@ -34,11 +34,10 @@ class AccountsActivity: AbstractActivity<AccountsBottomPresenter, AccountsBottom
         vb = VirtualBank.getBank(Constants.AUTH_TOKEN)
         presenter = AccountsBottomPresenter(this)
         adapter = AccountsBottomAdapter(presenter)
-        return AbstractClassProperties(presenter, adapter, "Your Accounts")
+        return AbstractClassProperties(presenter, adapter, "Your Accounts", appStyleRes = R.style.AppTheme)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
 
         // Back Button on Nav Bar. If bar null, no back button. User can use physical back.

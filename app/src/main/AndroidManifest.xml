@@ -24,7 +24,10 @@
         <activity android:name=".creditCard.CreditCardActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".investing.InvestingActivity"
+        <activity android:name=".investing.searchSymbolsPage.InvestingActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".investing.simulationResultsPage.InvestingSimulationActivity"
             android:screenOrientation="portrait">
         </activity>
     </application>

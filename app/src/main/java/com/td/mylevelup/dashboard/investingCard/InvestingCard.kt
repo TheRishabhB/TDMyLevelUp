@@ -8,7 +8,7 @@ import android.util.AttributeSet
 import com.ngam.rvabstractions.singleCard.CardDataSource
 import com.ngam.rvabstractions.singleCard.GenericCardView
 import com.td.mylevelup.R
-import com.td.mylevelup.investing.InvestingActivity
+import com.td.mylevelup.investing.searchSymbolsPage.InvestingActivity
 
 class InvestingCard(context: Context, attrSet: AttributeSet?, defStyleAttr: Int):
         GenericCardView<InvestingCardPresenter, InvestingCardAdapter>(context, attrSet, defStyleAttr), InvestingCardView {

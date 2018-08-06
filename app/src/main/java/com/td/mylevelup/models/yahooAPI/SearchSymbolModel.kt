@@ -1,4 +1,4 @@
-package com.td.mylevelup.models
+package com.td.mylevelup.models.yahooAPI
 
 import com.google.gson.annotations.SerializedName
 

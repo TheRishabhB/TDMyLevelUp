@@ -1,19 +1,16 @@
-package com.td.mylevelup.investing
+package com.td.mylevelup.investing.searchSymbolsPage
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.SearchView
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.ngam.rvabstractions.screens.AbstractActivity
 import com.ngam.rvabstractions.screens.AbstractClassProperties
 import com.td.mylevelup.R
-import com.td.mylevelup.models.SearchSymbolModel
+import com.td.mylevelup.investing.simulationResultsPage.InvestingSimulationActivity
 import okhttp3.*
-import org.json.JSONObject
-import java.io.IOException
 
 class InvestingActivity: AbstractActivity<InvestingPagePresenter, InvestingPageAdapter>(), InvestingPageView {
 
@@ -24,11 +21,10 @@ class InvestingActivity: AbstractActivity<InvestingPagePresenter, InvestingPageA
         client = OkHttpClient()
         presenter = InvestingPagePresenter(this, client)
         adapter = InvestingPageAdapter(presenter)
-        return AbstractClassProperties(presenter, adapter, "Search for a Symbol")
+        return AbstractClassProperties(presenter, adapter, "Search for a Symbol", appStyleRes = R.style.AppTheme)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -70,5 +66,11 @@ class InvestingActivity: AbstractActivity<InvestingPagePresenter, InvestingPageA
     // View
     override fun reloadSymbolsList() {
         reload()
+    }
+
+    override fun launchSimulationScreenWithSymbol(symbol: String) {
+        val intent = Intent(this, InvestingSimulationActivity::class.java)
+        intent.putExtra(InvestingSimulationActivity.SYMBOL_KEY, symbol)
+        startActivity(intent)
     }
 }

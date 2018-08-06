@@ -32,11 +32,10 @@ class CreditCardActivity: AbstractActivity<CreditCardTransactionDetailsPresenter
         vb = VirtualBank.getBank(Constants.AUTH_TOKEN)
         presenter = CreditCardTransactionDetailsPresenter(this, vb)
         adapter = CreditCardTransactionDetailsAdapter(presenter)
-        return AbstractClassProperties(presenter, adapter, "Your Credit Card Details")
+        return AbstractClassProperties(presenter, adapter, "Your Credit Card Details", appStyleRes = R.style.AppTheme)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         // Back Button on Nav Bar. If bar null, no back button. User can use physical back.
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
