@@ -32,31 +32,6 @@ class DashboardActivity : AppCompatActivity() {
 
         accountsCardView = findViewById(R.id.accountsCard)
         creditCardCard = findViewById(R.id.creditCardCard)
-
-        val urlBuilder: HttpUrl.Builder = HttpUrl.parse("http://d.yimg.com/autoc.finance.yahoo.com/autoc")?.newBuilder() ?: HttpUrl.Builder()
-        urlBuilder.addQueryParameter("query", "ms")
-        urlBuilder.addQueryParameter("region", "1")
-        urlBuilder.addQueryParameter("lang", "en")
-
-        val request: Request = Request.Builder().url(urlBuilder.toString()).build()
-
-        val client = OkHttpClient()
-
-        client.newCall(request).enqueue(object: Callback {
-            override fun onResponse(call: Call?, response: Response?) {
-                val responseString: String = JSONObject(response?.body()?.string().toString())
-                        .getJSONObject("ResultSet")
-                        .getJSONArray("Result")
-                        .toString()
-                val listResponseTypeToken =  object: TypeToken<List<SearchSymbolModel>>(){}.type
-
-                val stockList: List<SearchSymbolModel> = Gson().fromJson(responseString, listResponseTypeToken)
-            }
-
-            override fun onFailure(call: Call?, e: IOException?) {
-                // TODO: Handle Fail
-            }
-        })
     }
 
     private fun createScrollListener(): OnInputReceived<CustomerProfiles> {

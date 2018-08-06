@@ -13,10 +13,12 @@ class AccountsCardPresenter(private val view: AccountsCardView,
                             private val vb: VirtualBank): AbstractPresenter() {
 
     private var accounts: ArrayList<VirtualBankBankAccount> = ArrayList()
+    var isError: Boolean = false
 
     override fun onViewReady() {
         super.onViewReady()
         accounts.clear()
+        isError = false
         if (view.getBankAccounts() == null) {
             view.makeBankAccountsCall(vb)
             return
@@ -41,17 +43,19 @@ class AccountsCardPresenter(private val view: AccountsCardView,
     fun createBankAccountsClosure(): VirtualBankGetCustomerBankAccountsRequest {
         return object: VirtualBankGetCustomerBankAccountsRequest() {
             override fun onSuccess(p0: ArrayList<VirtualBankBankAccount>?) {
+                isError = false
                 handleBankAccountsResponse(p0)
             }
 
             override fun onError(p0: VolleyError?) {
-                // TODO: Handle Error
+                isError = true
             }
         }
     }
 
     private fun handleBankAccountsResponse(accounts: ArrayList<VirtualBankBankAccount>?) {
         this.accounts = accounts ?: return
+        isError = false
         view.storeResponse(accounts)
         view.reloadCard()
     }

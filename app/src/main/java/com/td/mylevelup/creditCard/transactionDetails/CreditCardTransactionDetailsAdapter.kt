@@ -19,7 +19,8 @@ class CreditCardTransactionDetailsAdapter(
         // Return if error state
         if (presenter.errorState){
             add(SideTitleBinder("Transactions: ", 30f))
-            add(CenterTitleBinder("Unable to get transactions", 30f))
+            add(CenterTitleBinder("", 15f))
+            add(CenterTitleBinder("Unable to get transactions (╯°□°）╯︵ ┻━┻", 20f))
             return
         }
 

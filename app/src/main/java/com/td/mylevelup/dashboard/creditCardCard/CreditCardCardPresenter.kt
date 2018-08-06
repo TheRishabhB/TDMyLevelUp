@@ -14,9 +14,11 @@ class CreditCardCardPresenter(
         private val vb: VirtualBank): AbstractPresenter() {
 
     private var accounts: ArrayList<VirtualBankCreditCardAccount> = ArrayList()
+    var isError: Boolean = false
 
     override fun onViewReady() {
         super.onViewReady()
+        isError = false
         accounts.clear()
         if (view.getCreditCardAccounts() == null) {
             view.makeCreditCardAccountsCall(vb)
@@ -43,16 +45,18 @@ class CreditCardCardPresenter(
         return object: VirtualBankGetCustomerCreditCardAccountsRequest() {
             override fun onSuccess(p0: ArrayList<VirtualBankCreditCardAccount>?) {
                 handleCreditCardAccountsResponse(p0)
+                isError = false
             }
 
             override fun onError(p0: VolleyError?) {
-                // TODO
+                isError = true
             }
         }
     }
 
     private fun handleCreditCardAccountsResponse(accounts: ArrayList<VirtualBankCreditCardAccount>?) {
         this.accounts = accounts ?: return
+        isError = false
         view.storeResponse(accounts)
         view.reloadCard()
     }
