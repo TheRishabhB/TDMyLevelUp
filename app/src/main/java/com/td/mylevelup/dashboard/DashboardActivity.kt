@@ -23,6 +23,7 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var creditCardCard: CreditCardCard
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
         supportActionBar?.hide()

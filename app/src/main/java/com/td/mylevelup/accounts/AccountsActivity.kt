@@ -38,6 +38,7 @@ class AccountsActivity: AbstractActivity<AccountsBottomPresenter, AccountsBottom
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
 
         // Back Button on Nav Bar. If bar null, no back button. User can use physical back.

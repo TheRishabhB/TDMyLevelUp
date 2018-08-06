@@ -28,6 +28,7 @@ class InvestingActivity: AbstractActivity<InvestingPagePresenter, InvestingPageA
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
