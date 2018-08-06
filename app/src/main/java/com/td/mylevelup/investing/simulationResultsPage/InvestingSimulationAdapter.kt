@@ -3,6 +3,7 @@ package com.td.mylevelup.investing.simulationResultsPage
 import com.ngam.rvabstractions.components.title.sideTitle.SideTitleBinder
 import com.ngam.rvabstractions.general.AbstractAdapter
 import com.td.mylevelup.components.creditCardShimmer.CreditCardShimmerBinder
+import com.td.mylevelup.components.investingCandleStickChart.InvestingCandleStickChartBinder
 import com.td.mylevelup.components.simulationResults.SimulationResultsOverviewBinder
 import com.td.mylevelup.components.simulationResults.SimulationResultsRowBinder
 
@@ -24,7 +25,8 @@ class InvestingSimulationAdapter(private val presenter: InvestingSimulationPrese
                 String.format("$%.2f", presenter.getTotalExpenses() + presenter.getTotalGrowth())))
         add(SimulationResultsOverviewBinder("Total Growth: ", String.format("$%.2f", presenter.getTotalGrowth())))
 
-        // TODO: Candle Stick Chart
+        // TODO: Candlestick Chart
+//        add(InvestingCandleStickChartBinder(presenter.getPriceMap(), presenter.getSymbol()))
 
         add(SideTitleBinder("", 10f))
         add(SideTitleBinder(String.format("Trades to be Made (%d)", presenter.getSymbolTrades().size), 30f))

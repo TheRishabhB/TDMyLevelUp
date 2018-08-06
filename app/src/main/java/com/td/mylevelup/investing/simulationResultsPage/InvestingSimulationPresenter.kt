@@ -25,7 +25,7 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
     private var transactions: ArrayList<VirtualBankTransaction> = ArrayList()
     private val trades: ArrayList<InvestingSimulationTransaction> = ArrayList()
     private var expenses: Double = 0.00
-    private var numAccounts: Int = 0
+    private var numCallsMade: Int = 0
     private var numCallsBack: Int = 0
 
     override fun onViewReady() {
@@ -74,7 +74,6 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
         }
 
         bankingAccounts = VirtualBankInformationHolder.bankAccounts ?: ArrayList()
-        numAccounts = bankingAccounts.size
         for (account in bankingAccounts) {
             makeTransactionsCall(account)
         }
@@ -87,7 +86,6 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
         }
 
         creditCardAccounts = VirtualBankInformationHolder.creditCardAccounts ?: ArrayList()
-        numAccounts = creditCardAccounts.size
 
         for (account in creditCardAccounts) {
             makeTransactionsCall(account)
@@ -103,7 +101,7 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
     }
 
     private fun analyzeTransactions() {
-        val expenses: List<VirtualBankTransaction> = transactions.filter { it.currencyAmount <= 0 }
+        val expenses: List<VirtualBankTransaction> = transactions.filter { it.currencyAmount < 0 }
         if (expenses.isEmpty()) {
             return
         }
@@ -134,6 +132,17 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
         } else {
             return "Transaction"
         }
+    }
+
+    fun getPriceMap(): HashMap<String, SymbolDayInformation> {
+        return priceMap
+//        val sortedDates: List<String> = priceMap.keys.sorted()
+//        val dates: List<String> = sortedDates.subList(sortedDates.size - 31, sortedDates.size - 1)
+//        val last30DayPriceMap: HashMap<String, SymbolDayInformation> = HashMap()
+//        for (date in dates) {
+//            last30DayPriceMap[date] = priceMap[date] ?: continue
+//        }
+//        return last30DayPriceMap
     }
 
     fun getSymbolTrades(): ArrayList<InvestingSimulationTransaction> {
@@ -181,6 +190,7 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
     }
 
     fun createGetTransactionsClosure(): VirtualBankGetTransactionsRequest {
+        numCallsMade++
         return object: VirtualBankGetTransactionsRequest() {
             override fun onSuccess(p0: ArrayList<VirtualBankTransaction>?) {
                 numCallsBack++

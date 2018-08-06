@@ -15,7 +15,7 @@ class InvestingPagePresenter(private val view: InvestingPageView,
     private var searchQuery: String? = null
 
     fun getUpdatedSymbolsList(): List<SearchSymbolModel> {
-        return symbolsList
+        return symbolsList.filter { it.exchDisp == "NASDAQ" && it.typeDisp == "Equity" }
     }
 
     fun getUpdatedSearchQuery(): String? {
