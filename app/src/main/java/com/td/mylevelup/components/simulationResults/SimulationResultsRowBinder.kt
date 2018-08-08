@@ -13,7 +13,8 @@ class SimulationResultsRowBinder(private val transaction: InvestingSimulationTra
 
     override fun bindViewHolder(viewHolder: SimulationResultsRowViewHolder) {
         viewHolder.tradeName.text = String.format("%1s - [%2s]", symbol, transaction.expenseName)
-        viewHolder.tradeDetails.text = String.format("BUY - %.8f @ $%.2f", transaction.amount, transaction.price)
+        viewHolder.tradeDetails.text = String.format("BUY - %.8f @ $%.2f - $%.3f held",
+                transaction.amount, transaction.price, transaction.amountHeld)
         viewHolder.dateDetails.text = transaction.date
     }
 }

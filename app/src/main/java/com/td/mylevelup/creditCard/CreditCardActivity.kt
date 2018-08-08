@@ -29,7 +29,7 @@ class CreditCardActivity: AbstractActivity<CreditCardTransactionDetailsPresenter
     private lateinit var vb: VirtualBank
 
     override fun setProperties(): AbstractClassProperties<CreditCardTransactionDetailsPresenter, CreditCardTransactionDetailsAdapter> {
-        vb = VirtualBank.getBank(Constants.AUTH_TOKEN)
+        vb = VirtualBank.getBank(Constants.AUTH_TOKEN, this)
         presenter = CreditCardTransactionDetailsPresenter(this, vb)
         adapter = CreditCardTransactionDetailsAdapter(presenter)
         return AbstractClassProperties(presenter, adapter, "Your Credit Card Details", appStyleRes = R.style.AppTheme)

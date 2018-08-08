@@ -31,7 +31,7 @@ class InvestingSimulationActivity: AbstractActivity<InvestingSimulationPresenter
         val bundle: Bundle = intent.extras
         selectedSymbol = bundle.getString(SYMBOL_KEY)
         client = OkHttpClient()
-        vb = VirtualBank.getBank(Constants.AUTH_TOKEN)
+        vb = VirtualBank.getBank(Constants.AUTH_TOKEN, this)
 
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

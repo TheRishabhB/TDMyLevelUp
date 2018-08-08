@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">TD MyLevelUp</string>
+    <string name="virtual_bank_url">https://dev.botsfinancial.com/api/</string>
     <string name="name_format" formatted="false">Welcome %1s %2s!</string>
     <string name="welcome">Welcome!</string>
 
@@ -14,6 +15,6 @@
     <string name="credit_card_title">Credit Cards</string>
 
     <!-- Investing Strings -->
-    <string name="investing_card_string">We noticed you are spending quite heavily this month.
-        Click here to see how investing could make you money.</string>
+    <string name="investing_card_string">We noticed you are spending quite heavily this month,
+        see how investing instead of spending can grow your wealth</string>
 </resources>

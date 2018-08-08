@@ -31,7 +31,7 @@ class AccountsActivity: AbstractActivity<AccountsBottomPresenter, AccountsBottom
     private lateinit var topAdapter: AccountsTopAdapter
 
     override fun setProperties(): AbstractClassProperties<AccountsBottomPresenter, AccountsBottomAdapter> {
-        vb = VirtualBank.getBank(Constants.AUTH_TOKEN)
+        vb = VirtualBank.getBank(Constants.AUTH_TOKEN, this)
         presenter = AccountsBottomPresenter(this)
         adapter = AccountsBottomAdapter(presenter)
         return AbstractClassProperties(presenter, adapter, "Your Accounts", appStyleRes = R.style.AppTheme)

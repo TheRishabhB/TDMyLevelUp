@@ -31,8 +31,6 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
     override fun onViewReady() {
         super.onViewReady()
         makeAlphaVantageSymbolCall()
-        makeBankingAccountsCall()
-        makeCreditCardAccountsCall()
     }
 
     private fun makeAlphaVantageSymbolCall() {
@@ -59,6 +57,8 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
 
                     priceMap[dateString] = symbolDayInformation
                 }
+                makeBankingAccountsCall()
+                makeCreditCardAccountsCall()
             }
 
             override fun onFailure(call: Call?, e: IOException?) {
@@ -100,7 +100,7 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
         view.makeTransactionsCall(account.id)
     }
 
-    private fun analyzeTransactions() {
+    @Synchronized private fun analyzeTransactions() {
         val expenses: List<VirtualBankTransaction> = transactions.filter { it.currencyAmount < 0 }
         if (expenses.isEmpty()) {
             return
@@ -118,8 +118,9 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
             val price: Double = symbolDayInfo.close.toDouble()
             val sharesToBuy: Double = -expense.currencyAmount/price
             numberOfShares += sharesToBuy
+            val amountHeld: Double = price * sharesToBuy
             trades.add(InvestingSimulationTransaction(selectedSymbol,
-                    getTransactionName(expense), sharesToBuy, price, symbolDate))
+                    getTransactionName(expense), sharesToBuy, price, amountHeld, symbolDate))
         }
         view.reloadResults()
     }
@@ -136,13 +137,6 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
 
     fun getPriceMap(): HashMap<String, SymbolDayInformation> {
         return priceMap
-//        val sortedDates: List<String> = priceMap.keys.sorted()
-//        val dates: List<String> = sortedDates.subList(sortedDates.size - 31, sortedDates.size - 1)
-//        val last30DayPriceMap: HashMap<String, SymbolDayInformation> = HashMap()
-//        for (date in dates) {
-//            last30DayPriceMap[date] = priceMap[date] ?: continue
-//        }
-//        return last30DayPriceMap
     }
 
     fun getSymbolTrades(): ArrayList<InvestingSimulationTransaction> {
@@ -154,7 +148,7 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
     }
 
     fun getTotalGrowth(): Double {
-        return trades.sumByDouble { it.price }
+        return trades.sumByDouble { it.amountHeld }
     }
 
     fun getSymbol(): String {

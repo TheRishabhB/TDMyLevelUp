@@ -58,6 +58,7 @@ class AccountsCardPresenter(private val view: AccountsCardView,
 
             override fun onError(p0: VolleyError?) {
                 isError = true
+                view.reloadCard()
             }
         }
     }

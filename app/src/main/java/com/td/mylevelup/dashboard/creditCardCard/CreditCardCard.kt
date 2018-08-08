@@ -23,7 +23,7 @@ class CreditCardCard(context: Context, attrSet: AttributeSet?, defStyleAttr: Int
     constructor(context: Context): this(context, null)
 
     override fun setDataSource(): CardDataSource<CreditCardCardPresenter, CreditCardCardAdapter> {
-        val vb: VirtualBank = VirtualBank.getBank(Constants.AUTH_TOKEN)
+        val vb: VirtualBank = VirtualBank.getBank(Constants.AUTH_TOKEN, context)
         presenter = CreditCardCardPresenter(this, vb)
         adapter = CreditCardCardAdapter(presenter)
         return CardDataSource(presenter, adapter, "Credit Cards:",

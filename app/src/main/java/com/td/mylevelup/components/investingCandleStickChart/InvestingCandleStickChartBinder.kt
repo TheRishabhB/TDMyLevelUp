@@ -1,7 +1,11 @@
 package com.td.mylevelup.components.investingCandleStickChart
 
+import android.graphics.Color
+import android.graphics.Paint
 import android.view.ViewGroup
 import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.data.CandleData
+import com.github.mikephil.charting.data.CandleDataSet
 import com.github.mikephil.charting.data.CandleEntry
 import com.ngam.rvabstractions.general.AbstractDataBinder
 import com.td.mylevelup.models.alphaVantage.SymbolDayInformation
@@ -19,16 +23,25 @@ class InvestingCandleStickChartBinder(private val data: HashMap<String, SymbolDa
 
 
         val candleEntries: ArrayList<CandleEntry> = ArrayList()
-//        for (datum in data) {
-//            candleEntries.add(CandleEntry(, entry.value.high.toFloat(), entry.value.low.toFloat(),
-//                    entry.value.open.toFloat(), entry.value.close.toFloat()))
-//        }
-        for (data in prepareData()) {
-            val x = 5
+        var index = 0
+        for (entry in prepareData()) {
+            candleEntries.add(CandleEntry(index.toFloat(), entry.value.high.toFloat(), entry.value.low.toFloat(),
+                    entry.value.open.toFloat(), entry.value.close.toFloat()))
+            index++
         }
 
-        viewHolder.chart.animateX(1000, Easing.EasingOption.Linear)
-        viewHolder.chart.animateY(1000, Easing.EasingOption.Linear)
+        val dataSet = CandleDataSet(candleEntries, "Data for $symbolName")
+        dataSet.color = Color.rgb(80, 80, 80)
+        dataSet.shadowColor = Color.DKGRAY
+        dataSet.shadowWidth = 0.7f
+        dataSet.decreasingColor = Color.RED
+        dataSet.decreasingPaintStyle = Paint.Style.FILL
+        dataSet.increasingColor = Color.rgb(122, 242, 84)
+        dataSet.decreasingPaintStyle = Paint.Style.FILL
+        dataSet.neutralColor = Color.BLUE
+
+        viewHolder.chart.data = CandleData(dataSet)
+        viewHolder.chart.animateX(1000)
     }
 
     private fun prepareData(): Map<String, SymbolDayInformation> {

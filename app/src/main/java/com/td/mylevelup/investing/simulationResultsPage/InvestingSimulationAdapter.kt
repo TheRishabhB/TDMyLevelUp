@@ -25,8 +25,7 @@ class InvestingSimulationAdapter(private val presenter: InvestingSimulationPrese
                 String.format("$%.2f", presenter.getTotalExpenses() + presenter.getTotalGrowth())))
         add(SimulationResultsOverviewBinder("Total Growth: ", String.format("$%.2f", presenter.getTotalGrowth())))
 
-        // TODO: Candlestick Chart
-//        add(InvestingCandleStickChartBinder(presenter.getPriceMap(), presenter.getSymbol()))
+        add(InvestingCandleStickChartBinder(presenter.getPriceMap(), presenter.getSymbol()))
 
         add(SideTitleBinder("", 10f))
         add(SideTitleBinder(String.format("Trades to be Made (%d)", presenter.getSymbolTrades().size), 30f))

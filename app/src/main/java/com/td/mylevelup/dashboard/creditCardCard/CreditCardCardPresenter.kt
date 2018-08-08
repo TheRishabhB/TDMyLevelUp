@@ -59,6 +59,7 @@ class CreditCardCardPresenter(
 
             override fun onError(p0: VolleyError?) {
                 isError = true
+                view.reloadCard()
             }
         }
     }
