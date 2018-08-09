@@ -32,6 +32,16 @@ Which one is the best for them?
   * Allows user to filter different NASDAQ symbols and pick one
   * Shows users a candlestick chart showing recent history of the symbol
   * Shows transactions that must have been made
+
+## Screenshots
+
+| Dashboard | Personal Banking | Personal Banking | 
+| ------------- | ------------- | ------------- |
+| <img src="screenshots/dashboard.jpg" width="200"> | <img src="screenshots/bankingAccounts.jpg" width="200"> | <img src="screenshots/creditCard.jpg" width="200"> |
+
+| Investing Symbol Search Default State | Investing Symbol Searching | Investing Simulation Results | 
+| ------------- | ------------- | ------------- |
+| <img src="screenshots/investing stocks.jpg" width="200"> | <img src="screenshots/investing stocks searching.jpg" width="200"> | <img src="screenshots/simulation results.jpg" width="200"> |
   
 ## Running the Application
 ### Prerequisites:
@@ -41,8 +51,6 @@ Which one is the best for them?
     2. Device or emulator with android 7.0 Minimum
 
 ## Resources
-### Alternative Version
-- [iOS Version](https://github.com/simubank/project13-spaceinvaders)
 ### TD APIs
 - [BOTS Financial API](http://botsfinancial.com/app/login) - The API used to obtain user data
 - [BOTS Financial Swagger](https://dev.botsfinancial.com/swagger-ui.html#/) - The Swagger Documentation
@@ -53,3 +61,5 @@ Which one is the best for them?
  - [RVAbstractions](https://github.com/TheRishabhB/RecyclerViewAbstractions) - A set of abstract classes made by me to 
  allow for faster android development
   - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) - Charts for Android
+### Alternative Version
+- [iOS Version](https://github.com/simubank/project13-spaceinvaders)
