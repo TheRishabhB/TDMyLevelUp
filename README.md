@@ -40,17 +40,6 @@ Which one is the best for them?
     1. The latest version of Studio
     2. Device or emulator with android 7.0 Minimum
 
-## Screenshots
-### Dashboard
-<img src="screenshots/dashboard.jpg" width="200">
-### Banking Accounts
-<img src="screenshots/bankingAccounts.jpg" width="200">
-### Credit Card Accounts
-<img src="screenshots/creditCard.jpg" width="200">
-### Investing
-#### Searching Stocks
-<img src="screenshots/investing stocks.jpg" width="200"><img src="screenshots/investing stocks searching.jpg" width="200">
-
 ## Resources
 ### Alternative Version
 - [iOS Version](https://github.com/simubank/project13-spaceinvaders)
