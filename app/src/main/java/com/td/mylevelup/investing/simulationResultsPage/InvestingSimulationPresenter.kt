@@ -27,6 +27,7 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
     private var expenses: Double = 0.00
     private var numCallsMade: Int = 0
     private var numCallsBack: Int = 0
+    private var numberOfShares: Double = 0.0
 
     override fun onViewReady() {
         super.onViewReady()
@@ -106,7 +107,7 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
             return
         }
         this.expenses += expenses.sumByDouble { -it.currencyAmount }
-        var numberOfShares = 0.0
+        numberOfShares = 0.0
 
         val expenseDateFormat = SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss", Locale.ENGLISH)
         val symbolDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
@@ -148,7 +149,10 @@ class InvestingSimulationPresenter(private val selectedSymbol: String,
     }
 
     fun getTotalGrowth(): Double {
-        return trades.sumByDouble { it.amountHeld }
+        val symbolDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.add(Calendar.DATE, -1)
+        return numberOfShares * (priceMap[symbolDateFormat.format(calendar.time)]?.close?.toDouble() ?: 0.00)
     }
 
     fun getSymbol(): String {
