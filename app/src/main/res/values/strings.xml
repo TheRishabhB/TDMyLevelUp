@@ -17,4 +17,7 @@
     <!-- Investing Strings -->
     <string name="investing_card_string">We noticed you are spending quite heavily this month,
         see how investing instead of spending can grow your wealth</string>
+
+    <!-- Mortgage Strings -->
+    <string name="mortgage_card_string">Advance your financial future with TD Mortgage!</string>
 </resources>
