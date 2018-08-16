@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="card_spacing">15dp</dimen>
+    <dimen name="button_mortgage_padding">30dp</dimen>
+    <dimen name="text_20_sp">20sp</dimen>
 </resources>

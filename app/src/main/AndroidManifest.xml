@@ -30,6 +30,7 @@
         <activity android:name=".investing.simulationResultsPage.InvestingSimulationActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".mortgage.mortgageCalculatorPage.MortgageActivity" />
     </application>
 
 </manifest>
