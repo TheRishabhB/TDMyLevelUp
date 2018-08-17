@@ -9,13 +9,27 @@
         android:id="@+id/recyclerView_calculator_mortgage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/form_padding"
+        android:layout_marginStart="@dimen/form_padding"
+        android:layout_marginTop="@dimen/form_padding"
         android:descendantFocusability="beforeDescendants"
         android:orientation="vertical" />
 
-    <Spinner
-        android:id="@+id/frequency_spinner"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/button_mortgage_padding"
+        android:layout_marginEnd="@dimen/button_mortgage_padding"
+        android:layout_marginStart="@dimen/button_mortgage_padding"
+        android:background="@color/td_green">
+
+        <Spinner
+            android:id="@+id/frequency_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white" />
+    </FrameLayout>
+
 
     <Button
         android:id="@+id/calculate_payment_button"
