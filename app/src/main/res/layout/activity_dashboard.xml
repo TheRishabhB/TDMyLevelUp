@@ -40,5 +40,13 @@
             android:layout_marginBottom="@dimen/card_spacing"
             android:layout_below="@id/creditCardCard">
         </com.td.mylevelup.dashboard.investingCard.InvestingCard>
+
+        <com.td.mylevelup.dashboard.mortgageCard.MortgageCard
+            android:id="@+id/mortgageCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/card_spacing"
+            android:layout_marginBottom="@dimen/card_spacing"
+            android:layout_below="@+id/investingCard"/>
     </RelativeLayout>
 </ScrollView>

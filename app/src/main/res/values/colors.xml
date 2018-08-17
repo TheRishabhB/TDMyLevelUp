@@ -7,5 +7,7 @@
     <color name="text_color">#333333</color>
     <color name="white">@android:color/white</color>
     <color name="red">@android:color/holo_red_dark</color>
+    <color name="grey">#CABBBBBB</color>
+    <color name="td_green">#006400</color>
 
 </resources>
