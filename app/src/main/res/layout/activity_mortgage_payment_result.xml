@@ -45,9 +45,10 @@
 
     <TextView
         android:id="@+id/eligibility_text_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="@dimen/mortgage_title_padding"
         android:padding="@dimen/mortgage_title_padding"
         android:textColor="@color/td_dark_green"
         android:textSize="@dimen/text_30_sp" />
