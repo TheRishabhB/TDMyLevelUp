@@ -5,19 +5,20 @@ import android.view.View
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.volley.VolleyError
+import com.ngam.rvabstractions.general.AbstractAdapter
 import com.ngam.rvabstractions.screens.AbstractActivity
 import com.ngam.rvabstractions.screens.AbstractClassProperties
 import com.td.mylevelup.Constants.Companion.AUTH_TOKEN
 import com.td.mylevelup.R
+import com.td.mylevelup.models.CustomerProfiles
 import com.td.virtualbank.VirtualBank
 import com.td.virtualbank.VirtualBankGetCustomerTransactionsRequest
 import com.td.virtualbank.VirtualBankTransaction
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.util.*
-import kotlin.concurrent.schedule
 
-class MortgagePaymentResultActivity : AbstractActivity<MortgagePaymentResultPresenter, MortgagePaymentResultAdapter>(), MortgagePaymentResultView {
+class MortgagePaymentResultActivity: AbstractActivity<MortgagePaymentResultPresenter, AbstractAdapter>(), MortgagePaymentResultView {
 
     private lateinit var monthlyPayments: String
     private lateinit var principal: String
@@ -49,7 +50,7 @@ class MortgagePaymentResultActivity : AbstractActivity<MortgagePaymentResultPres
 
         eligibilityTextView = findViewById(R.id.eligibility_text_view)
 
-        vb.getCustomerTransactions(this, "1f9e0890-77b5-44ae-a987-03a0a6a1029a_e2ba9727-a181-48f6-a1bc-0abf5ce173a2",
+        vb.getCustomerTransactions(this, CustomerProfiles.FRANK_NERLINSKI.profile.id,
                 object : VirtualBankGetCustomerTransactionsRequest() {
                     override fun onSuccess(p0: ArrayList<VirtualBankTransaction>?) {
                         p0!!.forEach {
@@ -65,13 +66,7 @@ class MortgagePaymentResultActivity : AbstractActivity<MortgagePaymentResultPres
                             this.text = getTextView(isCustomerEligible)
                         }
 
-                        // Delay by one second since the server response is way too fast it makes the data look
-                        // Stubbed.
-                        Timer().schedule(1000) {
-                            runOnUiThread {
-                                (findViewById<RelativeLayout>(R.id.loadingPanel)).visibility = View.GONE
-                            }
-                        }
+                        (findViewById<RelativeLayout>(R.id.loadingPanel)).visibility = View.GONE
                     }
 
                     override fun onError(p0: VolleyError?) {
@@ -79,13 +74,16 @@ class MortgagePaymentResultActivity : AbstractActivity<MortgagePaymentResultPres
                 })
     }
 
-    override fun setProperties(): AbstractClassProperties<MortgagePaymentResultPresenter, MortgagePaymentResultAdapter> {
+    override fun setProperties(): AbstractClassProperties<MortgagePaymentResultPresenter, AbstractAdapter> {
         presenter = MortgagePaymentResultPresenter(this)
-        adapter = MortgagePaymentResultAdapter(presenter)
-
+        adapter = object : AbstractAdapter() {
+            override fun buildRows() {
+                // Left Empty }
+            }
+        }
         return AbstractClassProperties(presenter, adapter,
-                getString(R.string.mortgage_payment_results_title)
-                , false, appStyleRes = R.style.AppTheme)
+                getString(R.string.mortgage_payment_results_title),
+                false, appStyleRes = R.style.AppTheme)
     }
 
     override fun getTextView(isEligible: Boolean): String {

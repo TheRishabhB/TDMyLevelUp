@@ -26,7 +26,7 @@ import com.thejuki.kformmaster.model.FormLabelElement
 import com.thejuki.kformmaster.model.FormNumberEditTextElement
 import java.math.BigDecimal
 
-class MortgageActivity : AbstractActivity<MortgagePagePresenter, MortgagePageAdapter>(), MortgagePageView {
+class MortgageActivity: AbstractActivity<MortgagePagePresenter, MortgagePageAdapter>(), MortgagePageView {
 
     private lateinit var spinner: Spinner
     private lateinit var button: Button
