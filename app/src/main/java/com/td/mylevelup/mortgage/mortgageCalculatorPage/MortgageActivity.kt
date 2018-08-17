@@ -3,11 +3,14 @@ package com.td.mylevelup.mortgage.mortgageCalculatorPage
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import com.ngam.rvabstractions.screens.AbstractActivity
 import com.ngam.rvabstractions.screens.AbstractClassProperties
+import com.td.mylevelup.Utils
 import com.td.mylevelup.Constants.Companion.FREQUENCY_BI_WEEKLY
 import com.td.mylevelup.Constants.Companion.FREQUENCY_MONTHLY
 import com.td.mylevelup.Constants.Companion.FREQUENCY_WEEKLY
@@ -16,6 +19,7 @@ import com.td.mylevelup.Constants.Companion.MAX_MORTGAGE_AMOUNT
 import com.td.mylevelup.Constants.Companion.MIN_AMORTIZATION_PERIOD
 import com.td.mylevelup.Constants.Companion.MIN_MORTGAGE_AMOUNT
 import com.td.mylevelup.R
+import com.td.mylevelup.mortgage.mortgageResultsPage.MortgagePaymentResultActivity
 import com.thejuki.kformmaster.helper.FormBuildHelper
 import com.thejuki.kformmaster.model.BaseFormElement
 import com.thejuki.kformmaster.model.FormLabelElement
@@ -35,7 +39,7 @@ class MortgageActivity: AbstractActivity<MortgagePagePresenter, MortgagePageAdap
         presenter = MortgagePagePresenter(this)
         adapter = MortgagePageAdapter(presenter)
 
-        return AbstractClassProperties(presenter, adapter, "Mortgage Calculator"
+        return AbstractClassProperties(presenter, adapter, getString(R.string.mortgage_calculator_title)
                 , false, appStyleRes = R.style.AppTheme)
     }
 
@@ -92,24 +96,24 @@ class MortgageActivity: AbstractActivity<MortgagePagePresenter, MortgagePageAdap
         button.setOnClickListener { _ ->
 
             if (isValidForm()) {
-                val principal: String = principalAmountEditText.value!!
-                val interestRate: String = interestRateEditText.value!!
-                val amortization: String = amortizationEditText.value!!
+                val principal: String = principalAmountEditText.value ?: ""
+                val interestRate: String = interestRateEditText.value ?: ""
+                val amortization: String = amortizationEditText.value ?: ""
 
-//                val monthlyPayments = CalculatorUtils.calculatePayment(principal,
-//                        interestRate,
-//                        amortization.toInt(),
-//                        spinner.selectedItem.toString())
+                val monthlyPayments = Utils.calculatePayment(principal,
+                        interestRate,
+                        amortization.toInt(),
+                        spinner.selectedItem.toString())
 
-//                // Start Result Activity
-//                val intent = Intent(this@MortgageCalculatorActivity,
-//                        MortgagePaymentResultActivity::class.java)
-//                intent.putExtra("principal", principal)
-//                intent.putExtra("rate", interestRate)
-//                intent.putExtra("period", amortization)
-//                intent.putExtra("monthly_payments", monthlyPayments.toString())
-//
-//                startActivity(intent)
+                // Start Result Activity
+                val intent = Intent(this@MortgageActivity,
+                        MortgagePaymentResultActivity::class.java)
+                intent.putExtra("principal", principal)
+                intent.putExtra("rate", interestRate)
+                intent.putExtra("period", amortization)
+                intent.putExtra("monthly_payments", monthlyPayments.toString())
+
+                startActivity(intent)
             }
         }
     }
@@ -143,7 +147,7 @@ class MortgageActivity: AbstractActivity<MortgagePagePresenter, MortgagePageAdap
         form.updateOnFocusChange = false
         form.setTitle(title)
         form.setHint(hint)
-        form.valueObservers.add { _, element ->
+        form.valueObservers.add { _, _ ->
             if (isValidForm()) {
                 setFormState(true, getDrawable(R.color.td_green))
             } else {
@@ -163,6 +167,19 @@ class MortgageActivity: AbstractActivity<MortgagePagePresenter, MortgagePageAdap
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // Apply the adapter to the spinner
         spinner.adapter = adapter
+
+        spinner.isSelected = false  // must
+        spinner.setSelection(0, true)  //must
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                Utils.hideKeyboard(this@MortgageActivity)
+            }
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                Utils.hideKeyboard(this@MortgageActivity)
+            }
+
+        }
     }
 
     private fun isPrincipalFieldValid(): Boolean {
@@ -182,7 +199,7 @@ class MortgageActivity: AbstractActivity<MortgagePagePresenter, MortgagePageAdap
             val value = BigDecimal(interestRateEditText.value)
 
             return interestRateEditText.isValid &&
-                    value > BigDecimal.ZERO &&
+                    value > BigDecimal.ONE &&
                     value <= BigDecimal.TEN
         } catch (e: Exception) {
             false

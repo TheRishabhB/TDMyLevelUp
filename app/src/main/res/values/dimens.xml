@@ -2,5 +2,7 @@
 <resources>
     <dimen name="card_spacing">15dp</dimen>
     <dimen name="button_mortgage_padding">30dp</dimen>
+    <dimen name="form_padding">15dp</dimen>
     <dimen name="text_20_sp">20sp</dimen>
+    <dimen name="mortgage_title_padding">20dp</dimen>
 </resources>

@@ -9,5 +9,6 @@
     <color name="red">@android:color/holo_red_dark</color>
     <color name="grey">#CABBBBBB</color>
     <color name="td_green">#006400</color>
-
+    <color name="td_dark_green">#163D22</color>
+    <color name="black">#000000</color>
 </resources>
