@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">TD MyLevelUp</string>
-    <string name="virtual_bank_url">https://dev.botsfinancial.com/api/</string>
+    <string name="virtual_bank_url">https://botsfinancial.com/api/</string>
     <string name="name_format" formatted="false">Welcome %1s %2s!</string>
     <string name="welcome">Welcome!</string>
 
