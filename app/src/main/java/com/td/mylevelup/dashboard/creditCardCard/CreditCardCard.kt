@@ -2,6 +2,7 @@ package com.td.mylevelup.dashboard.creditCardCard
 
 import android.content.Context
 import android.content.Intent
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -31,12 +32,28 @@ class CreditCardCard(context: Context, attrSet: AttributeSet?, defStyleAttr: Int
     }
 
     init {
+        cardListView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        cardListView.setPadding(getPixelsGivenDP(80f), getPixelsGivenDP(15f), 0, 0)
         cardListView.setBackgroundResource(R.drawable.td_couch)
         cardListView.layoutParams.height = getPixelsGivenDP(200f)
+        cardListView.addOnScrollListener(createRVScrollListener())
     }
 
     private fun getPixelsGivenDP(dp: Float): Int {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics).toInt()
+    }
+
+    private fun createRVScrollListener(): RecyclerView.OnScrollListener {
+        return object: RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0) {
+                    cardListView.setPadding(getPixelsGivenDP(0f), getPixelsGivenDP(15f), 0, 0)
+                    return
+                }
+                cardListView.setPadding(getPixelsGivenDP(80f), getPixelsGivenDP(15f), 0, 0)
+            }
+        }
     }
 
     fun dataChanged() {
