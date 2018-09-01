@@ -58,24 +58,25 @@ class CreditCardActivity: AbstractActivity<CreditCardTransactionDetailsPresenter
             adapter = previewAdapter
         }
         // Custom scroll and background behavior
+        cardPreviewListView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         cardPreviewListView.setBackgroundResource(R.drawable.td_couch)
-        cardPreviewListView.setPadding(0, getPixelsGivenDP(15f), 0, 0)
-        cardPreviewListView.addOnScrollListener(getRVScrollListener())
+        cardPreviewListView.setPadding(getPixelsGivenDP(80f), getPixelsGivenDP(15f), 0, 0)
+        cardPreviewListView.addOnScrollListener(createRVScrollListener())
         cardPreviewListView.layoutParams.height = getPixelsGivenDP(200f)
 
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(cardPreviewListView)
     }
 
-    private fun getRVScrollListener(): RecyclerView.OnScrollListener {
+    private fun createRVScrollListener(): RecyclerView.OnScrollListener {
         return object: RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (dy > 0) {
-                    cardPreviewListView.setPadding(0, 0, 0, 0)
+                    cardPreviewListView.setPadding(getPixelsGivenDP(0f), getPixelsGivenDP(15f), 0, 0)
                     return
                 }
-                cardPreviewListView.setPadding(0, getPixelsGivenDP(15f), 0, 0)
+                cardPreviewListView.setPadding(getPixelsGivenDP(80f), getPixelsGivenDP(15f), 0, 0)
             }
         }
     }
